@@ -48,6 +48,56 @@ So, after we know how the Q Learning works. The Deep Q Learning seems very simpl
 
 Deep Q Learning is a updated version of Q Learning. By using Deep Neutral Network the replace the Q-Table to solve the problem of "too many state" (ex: game screen, high demention data).
 
+the core concepts of this algorithm:
+
+1. the bottleneck of Q Learning:
+   - tradition Q-Learning save the Q(s,a) by the Q-Table, however, the table will explode when there are too many states.
+   - for example: Atari game's state is 210 x 160 pixels, it can not even use a table to save.
+2. the specialize of DQN
+   - it use neutral network to predict *Q value*: input a statement, then output all of the actions.
+3. the key technique:
+   - Experience Replay: to avoid the relation of the continuous data by saving the past experience and stochastic sampling training.
+   - Target Network: use another network to calculate the target Q value. 
 
   
 ## WHY DO THIS PROJECT
+For those new to reinforcement learning, Deep Q-Learning (DQN) is an excellent project to learn and practice. It combines foundational RL concepts (like Q-values and exploration-exploitation) with deep learning, while being approachable enough for beginners.
+
+Using OpenAI Gym simplifies the process further:
+
+🚀 Pre-built environments (like LunarLander-v2) handle physics simulation and rendering.
+
+🏆 Built-in reward functions eliminate the need to design rewards from scratch (often the hardest part of RL projects).
+
+📊 Standardized benchmarks make it easy to compare your agent’s performance.
+
+Why DQN Fits the Lunar Lander Environment
+The Lunar Lander task (landing a spacecraft safely on a target pad) is a perfect match for DQN because:
+
+1. Handles High-Dimensional State Space
+   - The environment provides observations like position, velocity, and terrain angles (8-dimensional state).
+   - DQN’s neural network can process these continuous states without needing manual feature engineering.
+
+2. Discrete Action Space
+   - Lunar Lander has 4 discrete actions (fire engines left/right/down or do nothing), ideal for Q-learning’s action-selection approach.
+
+3. Balanced Complexity
+   - Challenging enough to require deep learning (simple Q-tables fail), but small enough to train on a laptop.
+   - Faster to experiment with than pixel-based games (e.g., Atari).
+
+4. Interpretable Training
+   - Rewards are dense (every step gives feedback), helping the agent learn faster.
+   - Visualizing the lander’s behavior is intuitive (vs. abstract games).
+
+### Key Implementation Notes
+While OpenAI Gym provides the reward function, you’ll still need to:
+- Tune hyperparameters (e.g., learning rate, discount factor γ).
+- Implement experience replay and target networks (critical for stability).
+- Manage exploration (e.g., ε-greedy decay) to balance random actions vs. learned policy.
+
+### Next Steps
+Try improving the vanilla DQN with:
+- Double DQN (reduces overestimation of Q-values).
+- Prioritized Experience Replay (replays important transitions more often).
+
+The code is for the beginners as a example of how to implement and train the model effiecently using Deep Q Learning. Hope you guys love it!!
